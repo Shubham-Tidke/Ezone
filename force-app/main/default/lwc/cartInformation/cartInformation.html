@@ -1,0 +1,97 @@
+<template>
+    <template if:true={indItem}>
+        <lightning-card title="Cart" icon-name="standard:account">
+            <!-- UserId : {userId} -->
+            <lightning-accordion class="example-accordion" active-section-name="cartLineItems"
+                allow-multiple-sections-open>
+                <lightning-accordion-section name="cartLineItems" label={cartName}>
+                    <div class="slds-float_right">
+                        <p>Cost : {cartAmount}</p>
+                        <template if:true={updatedCost}>
+                        <p>After Discount : {updatedCost}</p>
+                        </template>
+                    </div> </br>
+
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                        aria-labelledby="element-with-table-label other-element-with-table-label">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Quantity">Quantity</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Amount">Amount</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={indItem} for:item="mapKey">
+                                <tr key={mapKey.Id}>
+                                    <th scope="col">
+                                        <div>{mapKey.Product_Name__c}</div>
+                                    </th>
+                                    <th scope="col">
+
+                                        <dl class="slds-show_inline-block ">
+                                            <!-- <dd class="slds-show_inline-block slds-m-left_small">
+                                            <lightning-button label="+" data-name="Up" variant="brand" onclick={counter}>
+                                            </lightning-button>
+                                        </dd> -->
+                                            <dd class="slds-show_inline-block slds-m-left_small">
+                                                <!-- <lightning-input type="text" data-name="quantityLabel" value={mapKey.Quantity__c}></lightning-input> -->
+                                                <label>{mapKey.Quantity__c}</label>
+                                            </dd>
+                                            <!-- <dd class="slds-show_inline-block slds-m-left_small">
+                                            <lightning-button label="-" data-name="Down" variant="brand"
+                                                onclick={counter}></lightning-button>
+                                        </dd> -->
+                                        </dl>
+                                    </th>
+                                    <th scope="col">
+                                        <div>{mapKey.Total_Amount__c}</div>
+                                    </th>
+                                    <th scope="col">
+                                        <lightning-button-icon icon-name="utility:delete"
+																		  data-id={mapKey.Id}       
+																		  alternative-text="Delete"     
+																		  class="slds-m-left_xx-small"
+																		  onclick={removeRow} 
+																		  title="Delete"></lightning-button-icon>
+                                    </th>
+                                </tr>
+                                <!-- <c-cart-line-item-comp key={mapKey.Id} cart={mapKey}> </c-cart-line-item-comp> -->
+                            </template>
+                        </tbody>
+                    </table>
+                    </br></br>
+                    
+                    <div class="slds-float_right slds-button-group" role="group">
+                        <lightning-button type="submit" variant="brand" label="Coupon" data-id="couponBtn" onclick={textfield}
+                            class="slds-align_absolute-center"></lightning-button>&nbsp;
+                        <lightning-button type="submit" variant="brand" label="Check Out" onclick={goToOrder}
+                            class="slds-align_absolute-center"></lightning-button>
+                    </div>
+                    </br></br>
+                    <template if:true={isClicked}>
+                    <div class="slds-float_right slds-button-group" role="group">
+                        <lightning-input type="text" class="slds-float_right" variant="label-hidden"
+                            placeholder="Enter Coupon Code" data-name="temp">
+                        </lightning-input>
+                        <lightning-button type="submit" variant="brand" label="Availability" onclick={checkCoupon}
+                            class="slds-align_absolute-center"></lightning-button>
+                    </div>
+                    </template>
+                    </br></br>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </lightning-card>
+    </template>
+    <template if:false={indItem}>
+        <lightning-card title="Cart" icon-name="standard:account">
+            <p><b>There Are No Items in your cart!! Please don't do window shopping !! Dubara mat Aaana!!</b></p>
+        </lightning-card>
+    </template>
+</template>

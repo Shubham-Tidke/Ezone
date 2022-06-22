@@ -1,0 +1,63 @@
+<!--
+  @description       : 
+  @author            : Mayank Singh Kandari
+  @group             : 
+  @last modified on  : 06-22-2022
+  @last modified by  : Mayank Singh Kandari
+-->
+<template>
+    <h1 style="text-align:left; font-size:20px; top:1px;" class="Heading"> &nbsp;
+        Order List </h1>
+        <br>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout slds-table_striped" 
+    aria-label=" Example headless table of Opportunities with cell content wrapped ">
+        <thead>
+        <tr class="slds-line-height_reset">
+        <!-- <th class="" scope="col">
+        <div class="slds-truncate" title="Order No">Order No</div>
+        </th> -->
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Product">Product Name</div>
+        </th>
+        <th class="" scope="col">
+            <div class="slds-truncate" title="Total Items">Quantity</div>
+            </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Per unit price">Price Per Unit</div>
+        </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Total Amount">Total Amount</div>
+        </th>
+        </tr>
+        </thead>
+        <tbody> 
+    <template for:each={allorderitem} for:item="mapKey">
+        <tr key={mapKey.Id}>
+            <th class="slds-cell-wrap" scope="col">
+                <a href={redirect} title={mapKey.Product} class={ProductredirectClass}  data-id={mapKey.Product__c} onclick={myFunc}>{mapKey.Product_Name__c}</a>
+            </th>
+            <th class="slds-cell-wrap" scope="col">
+                <div title={mapKey.Product__c}>{mapKey.Quantity__c}</div>
+            </th>
+            <th  class="slds-cell-wrap" scope="col">
+                <div title={mapKey.Unit_Price__c}>{mapKey.Unit_Price__c}</div>
+            </th>
+            <th  class="slds-cell-wrap" scope="col">
+                <div title={mapKey.Total__c}>{mapKey.Total__c}</div>
+            </th>
+        </tr>
+    </template>
+</tbody>
+</table>
+
+<lightning-button label= "Cancel Order" onclick={cancelMyOrder}></lightning-button>
+<a href={invoice}><lightning-button label= "Download Invoice"></lightning-button></a>
+
+
+<template if:true={NoRecords}>
+    <div class="slds-align_absolute-center">
+        <br/>
+        No records found
+    </div>
+</template>
+ </template>

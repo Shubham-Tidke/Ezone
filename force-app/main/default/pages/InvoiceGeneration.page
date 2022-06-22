@@ -1,0 +1,161 @@
+<!--
+  @description       : 
+  @author            : Mayank Singh Kandari
+  @group             : 
+  @last modified on  : 06-21-2022
+  @last modified by  : Mayank Singh Kandari
+-->
+<apex:page extensions="InvoiceGenerationController"
+           action="{!getOrderDetails}"
+           standardController="Order__c"
+           applyHtmlTag="false"    
+           sidebar="false"    
+           showHeader="false"    
+           cache="true"
+          renderAs="pdf"
+           docType="html-5.0"
+           >
+        <html>
+            <head>  
+                <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+                
+                <style type="text/css">
+                    @page {
+                    size: A4 potrait;
+                    @bottom-right { content: "Page " counter(page) " of " counter(pages);}    
+                    }
+                    *{font-size:15px}
+                    p {margin: 5px; }               
+                    h2,b,p{font-size:15px;}                 
+                    .inline {
+                    display: inline-block;
+                    width:48%; 
+                    }
+                    table {
+                    border-collapse: collapse;                
+                    }
+    
+                    th, td {
+                    border:1px solid black;
+                    padding: 4px;
+                    font-size:15px
+                    }
+                    .nohorizontalboarder{
+                        border:1px solid black;
+                        border-top: none;
+                        border-bottom: none;
+                    }
+                    .bordernone{
+                        border: none;
+                    }
+                    .onlybottonbar{
+                        border:1px solid black;
+                        border-top: none;                   
+                    }
+                    pre{
+                        font-size:15px;
+                        font-family: 'Times New Roman', Times, serif;
+                        margin: 5px;
+                    }
+                    h2{
+                        background-color: #696969;
+                        padding: 3px;
+                    }
+                   
+                    .solid_col_col{
+                        border-top: 1px solid black;
+                        border-bottom: 1px solid black;
+                        
+                    }
+                    .solid_column{
+                        border: 1px solid black;
+                    }
+                    #leftbox {
+                        float:left; 
+                        width:50%;
+                        height:280px;
+
+                        
+                    }
+                    #middlebox{
+                        float:left; 
+                        width:50%;
+                        height:280px;
+
+                         }
+                    #rightbox{
+                        float:right;
+                        width:50%;
+                        height:280px;
+
+                    }
+                </style>    
+            </head>  
+           <body>
+            <div class="header">
+                <div id="leftbox">
+                    <p style="font-size:25px;">E-Zone</p>
+                    <p>B205-A, Level, Teerth Technospace,</p>
+                    <p>2nd Floor, Old Mumbai Rd, behind Mercedes Showroom,</p> 
+                    <p>Baner, Pune, Maharashtra 411045</p>
+                    <br/>
+                    <p><b>Bill To:</b></p>
+                    <p>{!Order__c.Billing_Address__c}</p>
+                </div>
+                <div id="rightbox">
+                    <p style="font-size: 35px;">INVOICE</p>
+                    <p>Invoice #: <b>{!Order__c.Name}</b></p>
+                    <p>Invoice Date:
+                    {!MONTH(TODAY())}/{!DAY(TODAY())}/{!YEAR(TODAY())}</p>
+                    <p>Order Date:
+                    {!MONTH(Order__c.Order_Date__c)}/{!DAY(Order__c.Order_Date__c)}/{!YEAR(Order__c.Order_Date__c)}</p>
+                    <br/>
+                    <p><b>Ship To:</b></p>
+                    <p>{!Order__c.Shipping_Address__c}</p>
+                    
+                </div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <table style="width:100%;">
+                    <tr>
+                        <td>Product</td>
+                        <td>Description</td>
+                        <td>Qty</td>
+                        <td>Price</td>
+                        <td>CGST</td>
+                        <td>SGST/UTGST</td>
+                        <td>Total</td>
+                    </tr>
+                     <apex:repeat value="{!orderLineItems}" var="value">
+                    <tr>
+                        <td>{!value.Product__r.Name}</td>
+                        <td>{!value.Product__r.Description}</td>
+                        <td>{!value.Quantity__c}</td>
+                        <td>{!value.Unit_Price__c}</td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        <td>{!value.Quantity__c * value.Unit_Price__c}</td>
+                    </tr>
+                    </apex:repeat> 
+                    <tr>
+                        <td colspan="4">Total Qty: {!qty} </td>
+                        <td colspan="3">Total Price:   
+                            <apex:outputText value="{0, Number, Currency}" >
+                                <apex:param value="{!total}" />
+                            </apex:outputText> 
+                        </td>
+                    </tr>
+                </table>
+                <br/><br/>
+                <p>Seller Registered Address:</p>
+                <p>B205-A, Level, Teerth Technospace,</p>
+                <p>2nd Floor, Old Mumbai Rd, behind Mercedes Showroom,</p> 
+                <p>Baner, Pune, Maharashtra 411045</p>
+                <br/>
+                <p>Declaration: The goods sold are intended for end user consumption and not for resale.</p>
+                <br/>
+                <left><img src="{!$Resource.ezone}" width="170" height="130"/></left> 
+                
+            </div>
+
+           </body>
+        </html>
+</apex:page>

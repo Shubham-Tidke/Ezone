@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : Mayank Singh Kandari
+  @group             : 
+  @last modified on  : 06-14-2022
+  @last modified by  : Mayank Singh Kandari
+-->
+<template>
+  <div class="slds-m-top_small">
+    <div onclick={selectProduct} class={tileClass}>
+      <a href={redirect}>
+        <div class="tile" style={backgroundStyle}></div>
+      </a>
+      <div>
+        <div class="slds-align_absolute-center " style="padding-top: 10px;">
+          <lightning-badge label={product.Name} class="slds-badge_inverse" ></lightning-badge>
+          <!-- <lightning-badge label={product.Description} class="slds-badge_inverse "></lightning-badge> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,58 @@
+<template>
+    <lightning-card>
+        <template if:true={isVisible}>
+
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                aria-labelledby="element-with-table-label other-element-with-table-label">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Quantity">Quantity</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Amount">Amount</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Status__c">Status</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={cartItems} for:item="mapKey">
+                        <tr key={mapKey.Id}>
+                            <th scope="col">
+                                <div><a href={redirect} class={goToCart}>{mapKey.Name}</a></div>
+                            </th>
+                            <th scope="col">
+                                <div>{mapKey.Quantity__c}</div>
+                            </th>
+                            <th scope="col">
+                                <div>{mapKey.Amount__c}</div>
+                            </th>
+                            <th scope="col">
+                                <div>{mapKey.Status__c}</div>
+                            </th>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            </br></br>
+
+
+        </template>
+
+
+
+        <template if:false={isVisible}>
+            <div class="slds-align_absolute-center">
+                
+                Your Cart is empty!
+            </div>
+        </template>
+
+
+    </lightning-card>
+</template>

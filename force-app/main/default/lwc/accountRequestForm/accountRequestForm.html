@@ -1,0 +1,87 @@
+<template>
+    <div class="slds-align_absolute-center">
+        <div class="slds-var-m-around_medium">
+        <lightning-layout>
+        <lightning-layout-item>
+            <lightning-record-edit-form object-api-name="Account_Request__c" onsuccess={handleSuccess}>
+            <div class="slds-grid slds-grid_pull-padded-medium">
+                    <div class="slds-col slds-p-horizontal_medium">
+                        <span>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={name} required></lightning-input-field>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={shippingStreet}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={shippingCity}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={shippingCountry}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={shippingPostalCode}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={shippingState}></lightning-input-field>
+                                </div>
+                            </div>
+                        </span>
+                        </div>
+                        <div class="slds-col slds-p-horizontal_medium">
+                        <span>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                    <lightning-input-field field-name={contactFirstName}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={contactLastName}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={contactEmail}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={contactTitle}></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-p-top_large">
+                                <div class="slds-p-left_x-large">
+                                <lightning-input-field field-name={contactPhone}></lightning-input-field>
+                                </div>
+                            </div>
+                        </span>
+                        </div>
+                </div>
+                <div class="slds-col slds-p-horizontal_medium">
+                    <div class="slds-p-top_large">    
+                        <div class="slds-p-left_x-large">
+                            <div class="slds-align_absolute-center">
+                            <lightning-button variant="brand" label="Submit" type="submit"></lightning-button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+            </lightning-record-edit-form>
+        </lightning-layout-item>
+        </lightning-layout>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : Mayank Singh Kandari
+  @group             : 
+  @last modified on  : 06-10-2022
+  @last modified by  : Mayank Singh Kandari
+-->
+<template>
+    <lightning-layout>
+      <lightning-layout-item class="slds-align-middle">
+        <lightning-combobox class="slds-align-middle"
+        name="productCategory"
+        value={selectedCategoryId}
+        options={searchOptions}
+        onchange={handleSearchOptionChange}
+        placeholder="Select a category"></lightning-combobox>
+      </lightning-layout-item>
+    </lightning-layout>
+    <p>
+      <c-product-category-search-result onsearch={searchCategory}>
+      </c-product-category-search-result>
+    </p>
+    
+  </template>

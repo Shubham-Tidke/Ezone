@@ -1,0 +1,22 @@
+<!--
+  @description       : List of Child Categories
+  @author            : Mayank Singh Kandari
+  @group             : 
+  @last modified on  : 06-13-2022
+  @last modified by  : Mayank Singh Kandari
+-->
+<template>
+    <lightning-tabset variant="scoped">
+        <template for:each={childCatObj} for:item="item" for:index="index">
+            <lightning-tab key={item.Id} label={item.Name}>
+                <c-product-list-child-category passid={item.Id}></c-product-list-child-category>
+            </lightning-tab>
+        </template>
+    </lightning-tabset>
+</template>
+
+<!--template for:each={productList} for:item="item1" for:index="index1">
+    <p key={item1.id}>
+        <c-new-product-lists product={item1} passid={passProductId}></c-new-product-lists>
+    </p>
+</template-->

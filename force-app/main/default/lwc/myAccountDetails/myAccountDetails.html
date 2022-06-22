@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="My Account" icon-name="standard:account">
+        <template if:true={account.data}>
+            <div class="slds-m-around_medium">
+                <p>Account Name : {name}</p>
+                <p>Phone : <lightning-formatted-phone value={phone}></lightning-formatted-phone></p>
+            </div>
+        </template>
+        
+    </lightning-card>
+</template>

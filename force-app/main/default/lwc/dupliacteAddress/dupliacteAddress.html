@@ -1,0 +1,15 @@
+<template>
+<lightning-card icon-name="custom:custom63">
+    <template if:true={contacts.data}>
+        <lightning-datatable key-field="Id" 
+                             data={contacts.data} 
+                             columns={columns} 
+                             onsave={handleSave}
+                             draft-values={saveDraftValues} 
+                             hide-checkbox-column 
+                             show-row-number-column>
+        </lightning-datatable>
+    </template>
+
+</lightning-card>
+</template>

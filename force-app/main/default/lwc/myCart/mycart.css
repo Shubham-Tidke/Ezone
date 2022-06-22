@@ -1,0 +1,56 @@
+.Cart-Container{
+  width: 70%;
+  height: 85%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 25px 40px #1687d933;
+ }
+
+.page-section {
+  border: solid 1px #ccc;
+  padding: 1rem;
+}
+.page-header,
+.page-footer {
+  height: 50px;
+}
+.page-main {
+  background: #f8f8f8;
+}
+.page-left,
+.page-right {
+  background: #f0efef;
+}
+
+.h1 {
+  font-size: 25px;
+}
+
+
+.Header{
+  margin: auto;
+  width: 90%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+ .Heading{
+  font-size: 20px;
+  font-family: ‘Open Sans’;
+  font-weight: 700;
+  color: #101016;
+ }
+
+ .Cart-Items{
+  margin: auto;
+  width: 90%;
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+ .image-box{
+  width: 15%;
+  text-align: center;
+ }

@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Recent Orders" icon-name="standard:account">
+
+        <div class="slds-m-around_medium">
+            <template if:true={recentorders}>
+                <lightning-datatable
+                key-field="Id"
+                data={recentorders}
+                columns={columns}
+                hide-checkbox-column="true"
+                onsort={handleSort}>
+            </lightning-datatable>
+            </template>
+            <template if:true={NoRecords}>
+                <div class="slds-align_absolute-center">
+                    <br/>
+                    No Recent Orders!!
+                </div>
+            </template>
+            <!-- <a href='#' download="download">  
+            </a> -->
+        </div>
+  
+
+    </lightning-card>
+
+</template>

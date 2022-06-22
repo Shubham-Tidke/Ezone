@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="My" icon-name="standard:account">
+   
+         
+        <lightning-button variant="brand" label="Add Address" onclick={addAddr} class="slds-align_absolute-center"></lightning-button>
+        <template if:true={isVisible}>
+        <div class="acc-container">
+            <lightning-record-edit-form object-api-name="Address_Book__c" record-id={recordId} onsuccess={handleSuccess}>
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2"> 
+                        <lightning-input-field field-name="Name"></lightning-input-field>
+                        <lightning-input-field field-name="Street__c"></lightning-input-field>
+                        <lightning-input-field field-name="Land_Mark__c"></lightning-input-field>
+                        <lightning-input-field field-name="State__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="City__c"></lightning-input-field>
+                        <lightning-input-field field-name="Country__c"></lightning-input-field>
+                        <lightning-input-field field-name="Postal_Code__c"></lightning-input-field>
+                        <lightning-input-field field-name="User__c"></lightning-input-field>
+                    </div>
+                </div>
+                <div id="container" class="slds-align_absolute-center">
+                    <lightning-button variant="brand" label="Submit" title="Submit" type="submit" ></lightning-button>
+                    &nbsp;&nbsp;
+                    <lightning-button label="Reset" variant="brand" onclick={handleReset} ></lightning-button>     
+                </div>
+                
+            </lightning-record-edit-form>
+        </div>
+        </template>
+    </br>
+        <lightning-datatable
+                key-field="Id"
+                data={addr}
+                columns={columns}
+                onsave={handleSave}
+                draft-values={draftValues}
+                onrowaction={handleRowAction}>
+        </lightning-datatable>
+
+
+    </lightning-card>
+</template>

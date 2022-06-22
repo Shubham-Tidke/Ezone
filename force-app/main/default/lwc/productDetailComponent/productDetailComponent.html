@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Product Details">
+        <div class="slds-grid slds-wrap">
+            <template for:each={productList} for:item="item">
+                <div class="slds-col slds-size_1-of-3" key={item.Id}>
+                    <p>
+                        <c-new-product-lists product={item}></c-new-product-lists>
+                    </p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,20 @@
+<template>
+    <lightning-card>
+        <div class="acc-container">
+        <lightning-record-view-form object-api-name="Contact" record-id={conID}>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Title"></lightning-output-field>
+                    <lightning-output-field field-name="Name"></lightning-output-field>
+                    <lightning-output-field field-name="Birthdate"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Phone"></lightning-output-field>
+                    <lightning-output-field field-name="Email"></lightning-output-field>
+                    <lightning-output-field field-name="MailingAddress"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-record-view-form>
+        </div>
+    </lightning-card>
+</template>

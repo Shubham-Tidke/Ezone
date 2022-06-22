@@ -1,0 +1,93 @@
+<!--
+  @description       : 
+  @author            : Mayank Singh Kandari
+  @group             : 
+  @last modified on  : 06-17-2022
+  @last modified by  : Mayank Singh Kandari
+-->
+<template>
+    <template if:true={products}>
+        <div class="slds-grid slds-wrap myClass">
+            <div class="slds-col slds-size_1-of-2">
+                <img src={productImage} width="500px" height="150px" style="margin: 10px 10px 10px 10px;">
+            </div>
+            <div class="slds-col slds-size_1-of-2" style="padding: 10px 10px 10px 10px;">
+                <lightning-tabset variant="scoped">
+                    <lightning-tab label="Product Details">
+                        <lightning-card title={products.Name} icon-name={detailsTabIconName}>
+                            <lightning-record-view-form record-id={products.Id} object-api-name='Product2'
+                                density='compact'>
+                                <lightning-output-field field-name="Name"></lightning-output-field>
+                                <lightning-output-field field-name="Price__c"></lightning-output-field>
+                                <lightning-output-field field-name="Description"></lightning-output-field>
+                            </lightning-record-view-form>
+                            <div class="slds-align_absolute-center">
+                                <dl class="slds-show_inline-block ">
+                                    <dd class="slds-show_inline-block slds-m-left_small" onclick={counter}>
+                                        <lightning-button label="+" data-name="Up" variant="brand"></lightning-button>
+                                    </dd>
+                                    <dd class="slds-show_inline-block slds-m-left_small">
+                                        <!-- <lightning-input type="text" style="border: black;" value={quantity}></lightning-input> -->
+                                        <label>{quantity}</label>
+                                    </dd>
+                                    <dd class="slds-show_inline-block slds-m-left_small">
+                                        <lightning-button label="-" data-name="Down" variant="brand" onclick={counter}></lightning-button>
+                                    </dd>
+                                    <dd class="slds-show_inline-block slds-m-left_small">
+                                        <lightning-button label="Add to Cart" variant="brand" onclick={handleOnClick}></lightning-button>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </lightning-card>
+                    </lightning-tab>
+                    <lightning-tab label="Reviews">
+                        <template if:false={proRatings}>
+                            <p>Aa jaa</p>
+                        </template>
+                        
+                            <lightning-card>
+                                <template for:each={proRatings} for:item="item">
+                                    <lightning-record-view-form key = {item.Id} record-id={item.Id} object-api-name='Product_Ratings__c'
+                                    density='compact'>
+                                    <lightning-output-field field-name="Rating__c"></lightning-output-field>
+                                    <lightning-output-field field-name="Comment__c"></lightning-output-field>
+                                </lightning-record-view-form>
+                                </template>
+                            </lightning-card>
+                       
+                            <p>Please Add your review!!</p>
+
+
+                    </lightning-tab>
+                    <lightning-tab label="Add Reviews">
+                        <div class="rate">
+                            <input type="radio" id="star15" name={name} value="5" onchange={handleRate} />
+                            <label for="star15" title="text">5 stars</label>
+                            <input type="radio" id="star14" name={name} value="4" onchange={handleRate} />
+                            <label for="star14" title="text">4 stars</label>
+                            <input type="radio" id="star13" name={name} value="3" onchange={handleRate} />
+                            <label for="star13" title="text">3 stars</label>
+                            <input type="radio" id="star12" name={name} value="2" onchange={handleRate} />
+                            <label for="star12" title="text">2 stars</label>
+                            <input type="radio" id="star11" name={name} value="1" onchange={handleRate} />
+                            <label for="star11" title="text">1 star</label>
+                        </div>
+                         <div>
+                            <br><br><br><br>
+                            <textarea id="review" placeholder="add review here.." name="review" rows="4" cols="50"></textarea>
+                            <br>
+                            <input type="submit" onclick={handleRating}/>
+                          </div>
+                         
+                    </lightning-tab>
+
+                </lightning-tabset>
+
+            </div>
+        </div>
+
+    </template>
+    <template if:false={products}>
+        <p>LOADING!!</p>
+    </template>
+</template>

@@ -1,0 +1,61 @@
+<template>
+    <h1 style="text-align:left; font-size:20px; top:1px;" class="Heading"> &nbsp;
+        My Orders</h1>
+        <br>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout slds-table_striped" 
+                                                 aria-label=" Example headless table of Opportunities with cell content wrapped ">
+        <thead>
+        <tr class="slds-line-height_reset">
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Order No">Order No</div>
+        </th>
+        <th class="" scope="col">
+            <div class="slds-truncate" title="Order Status">Order Status</div>
+            </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Total Items">Quantity</div>
+        </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Shipping Address">Shipping Address</div>
+        </th>
+        <th class="" scope="col">
+            <div class="slds-truncate" title="Expected Delivery date">Expected Delivery Date</div>
+            </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Payment Status">Payment Status</div>
+        </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Total Amount">Total Amount</div>
+        </th>
+        </tr>
+        </thead>
+         <tbody>  
+            
+            <template for:each={allorders} for:item="mapKey">
+                <tr key={mapKey.Id}>
+                    <th scope="col">
+                        <a  href={redirect} class={tileClass}  data-id={mapKey.Id} onclick={myFunc}>{mapKey.Name}</a>
+                    </th>
+                    <th class="slds-cell-wrap" scope="col">
+                        <div title={mapKey.Status__c}>{mapKey.Status__c}</div>
+                    </th>
+                    <th class="slds-cell-wrap" scope="col">
+                        <div title={mapKey.Total_Items__c}>{mapKey.Total_Items__c}</div>
+                    </th>
+                    <th  class="slds-cell-wrap" scope="col">
+                        <div title={mapKey.Shipping_Address__c}>{mapKey.Shipping_Address__c}</div>
+                    </th>
+                    <th  class="slds-cell-wrap" scope="col">
+                        <div title={mapKey.Expected_Delivery_Date__c}>{mapKey.Expected_Delivery_Date__c}</div>
+                    </th>
+                    <th class="slds-cell-wrap" scope="col">
+                        <div title={mapKey.Payment_Status__c}>{mapKey.Payment_Status__c}</div>
+                    </th>
+                    <th class="slds-cell-wrap" scope="col">
+                        <div title={mapKey.Total__c}>{mapKey.Total__c}</div>
+                    </th>
+                </tr>
+            </template>
+        </tbody>
+        </table>
+</template>

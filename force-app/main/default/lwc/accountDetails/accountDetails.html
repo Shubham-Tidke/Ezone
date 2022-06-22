@@ -1,0 +1,20 @@
+<template>
+        <lightning-card>
+            <div class="acc-container">
+            <lightning-record-view-form object-api-name="Account" record-id={accID}>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                        <lightning-output-field field-name="ParentId"></lightning-output-field>
+                        <lightning-output-field field-name="AccountSource"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="Phone"></lightning-output-field>
+                        <lightning-output-field field-name="Rating"></lightning-output-field>
+                        <lightning-output-field field-name="BillingAddress"></lightning-output-field>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+            </div>
+        </lightning-card>
+</template>

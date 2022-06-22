@@ -1,0 +1,29 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute type="Boolean" name="ismodalClicked"/>
+    <aura:attribute type="String" name="recordId"/>
+    <lightning:button onclick="{!c.openmodal}">Cancel Order</lightning:button>
+    <aura:if isTrue="{!v.ismodalClicked}">
+        <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModal}">
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="header43" class="slds-text-heading--medium">Test Modal</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <div>
+                        <c:CancelOrder recordId="{!v.recordId}"/>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    <div class="slds-backdrop " aura:id="Modalbackdrop"></div>
+    
+    
+    
+</aura:component>

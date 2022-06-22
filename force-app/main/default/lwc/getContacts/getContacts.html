@@ -1,0 +1,14 @@
+<template>
+    <lightning-card>
+        <div class="slds-m-around_medium">
+            Related Contacts<br/><br/>
+            <lightning-datatable
+                key-field="Id"
+                data={records}
+                columns={columns}
+                hide-checkbox-column="true"
+                show-row-number-column="true">
+            </lightning-datatable>  
+        </div>
+    </lightning-card>
+</template>

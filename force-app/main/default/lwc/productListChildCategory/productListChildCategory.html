@@ -1,0 +1,17 @@
+<!--
+  @description       : 
+  @author            : Mayank Singh Kandari
+  @group             : 
+  @last modified on  : 06-13-2022
+  @last modified by  : Mayank Singh Kandari
+-->
+<template>
+    <div class="slds-grid slds-wrap">
+        <template for:each={productList} for:item="item1" for:index="index1">
+            <div class="slds-col slds-size_1-of-3" key={item1.id}>
+                <c-new-product-lists product={item1} passid={passProductId}></c-new-product-lists>
+            </div>
+        </template>
+    </div>
+
+</template>

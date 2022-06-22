@@ -1,0 +1,46 @@
+<template>
+    <lightning-card >
+        <div class="slds-page-header slds-page-header--object-home">
+            <lightning-layout>
+                <lightning-layout-item >
+                    <lightning-icon icon-name="standard:contact" alternative-text="Contact" ></lightning-icon>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left--small">
+                    <p class="slds-text-title--caps slds-line-height--reset">Accounts</p>
+                    <h1 class="slds-page-header__title slds-p-right--x-small">Contact
+                        Viewer</h1>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout >
+                <lightning-layout-item >
+                    <p class="slds-text-body--small"> Contacts • View
+                        Contacts Based on Selected Account</p>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <label class="slds-form-element__label" for="select-01">Select Account</label>
+        <div class="slds-form-element__control">
+            <div class="slds-select_container">
+                <select class="slds-select" id="select-01" onchange={onValueSelection}>
+                    <!--iterate all picklist values from accounts list using for:each loop-->
+                    <template for:each={contacts.data} for:item="con">
+                        <option key={con.Id} value={con.Id}>
+                            {con.Name}
+                        </option>
+                    </template>
+                </select>
+            </div>
+        </div>
+        <template if:true={carts}>
+            <lightning-card title="Carts"  >
+                <div style="height: 300px;">
+                    <lightning-datatable
+                                         key-field="Id"
+                                         data={carts}
+                                         columns={columns}>
+                    </lightning-datatable>
+                </div>    
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>

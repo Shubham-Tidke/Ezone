@@ -1,0 +1,55 @@
+<template>
+    <template if:true={loader}>
+        <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+    </template>
+ 
+    <div class="slds-box slds-theme_default">
+        <lightning-card title="Order List of the Customer" icon-name="standard:account">
+
+            <div class="slds-m-around_medium">
+                <template if:true={orders}>
+                    <lightning-datatable
+                    key-field="Id"
+                    data={orders}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    onsort={handleSort}>
+                </lightning-datatable>
+                </template>
+                <template if:true={isDisplayNoRecords}>
+                    <div class="slds-align_absolute-center">
+                        <br/>
+                        No records found
+                    </div>
+                </template>
+                <!-- <a href='#' download="download">  
+                </a> -->
+            </div>
+           
+            
+            <br/>
+
+            <div class="slds-align_absolute-center"> 
+                <div class="slds-p-right_xx-small">
+                         
+                    <lightning-button label="Prev"
+                    disabled={isPrev} onclick={handlePrev}
+                                        variant="brand"
+                                        icon-name="utility:back"
+                                        name="prev"></lightning-button>  
+                </div>
+                <span class="slds-badge slds-badge_lightest">
+                    {recordStart}-{recordEnd} of {totalRecords} | Page {pageNumber} of {totalPages}
+                </span>
+                <div class="slds-p-left_xx-small">
+                    <lightning-button label="Next"
+                    disabled={isNext} onclick={handleNext}
+                                        variant="brand"
+                                        icon-name="utility:forward"
+                                        icon-position="right"
+                                        name="next"></lightning-button>
+                </div>
+            </div>  
+        </lightning-card>
+    </div>
+</template>

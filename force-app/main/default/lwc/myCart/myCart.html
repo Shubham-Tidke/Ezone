@@ -1,0 +1,63 @@
+<template>
+       <div class=”Header”>
+    <h1 style="text-align:left; font-size:20px; top:1px;" class="Heading"> &nbsp;
+        My Cart</h1>
+       </div>
+       <br>
+
+       <!-- <div class="shopping-cart">
+
+        <div class="column-labels">
+
+          <label class="product-image">Image</label>
+
+          <label class="product-details">Product</label>
+          <label class="product-price">Price</label>
+          <label class="product-quantity">Quantity</label>
+          <label class="product-removal">Remove</label>
+          <label class="product-line-price">Total</label>
+
+        </div>
+
+       </div> -->
+        
+     <template iterator:it={opencart}>          
+                <p key={it.value.Id}>  
+                    <a href={Linkpage}>     
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Product Name    : &nbsp;  {it.value.Product__c}
+                    </a>  
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Product Quality :  &nbsp; {it.value.Quantity__c}
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Total Amount    :  &nbsp; {it.value.Total_Amount__c}
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Unit Per Price  :  &nbsp; {it.value.Unit_Price__c}
+                    
+                </p>  
+            </template>
+
+
+            <template if:true={NoRecords}>
+                <div class="slds-align_absolute-center">
+                    <br/>
+                    Your cart is empty!
+                </div>
+            </template>
+</template>
+
+
+ <!-- <template if:true={opencart}>
+                <lightning-datatable class="table" 
+                key-field="Id"
+                data={opencart}
+                columns={columns}
+                hide-checkbox-column="true">
+            </lightning-datatable>
+            </template> -->
+
+            <!-- <template if:true={opencart} >
+                <template for:each={opencart} for:item="open">
+                    <p key = {open.Id}> {open.Name} </p>
+                    <p key = {open.Status}>{open.Status__c} </p>
+                </template>
+            </template> -->

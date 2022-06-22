@@ -1,0 +1,63 @@
+<template>
+    <!-- <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+    aria-labelledby="element-with-table-label other-element-with-table-label">
+        <tr class="slds-line-height_reset">
+            <th scope="col">
+                <div>{cart.Product_Name__c}</div>
+            </th>
+            <th class="" scope="col">
+                <dl class="slds-show_inline-block ">
+                    <dd class="slds-show_inline-block slds-m-left_small">
+                        <lightning-button class="slds-truncate" label="+" data-name="Up" variant="brand" onclick={counter}>
+                        </lightning-button>
+                    </dd>
+                    <dd class="slds-show_inline-block slds-m-left_small">
+                        <label class="slds-truncate">{quantity}</label>
+                    </dd>
+                    <dd class="slds-show_inline-block slds-m-left_small">
+                        <lightning-button class="slds-truncate" label="-" data-name="Down" variant="brand" onclick={counter}>
+                        </lightning-button>
+                    </dd>
+                </dl>
+            </th>
+            <th scope="col">
+                <div class="slds-truncate">{cart.Total_Amount__c}</div>
+            </th>
+        </tr>
+    </table>
+</template> -->
+
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+        aria-labelledby="element-with-table-label other-element-with-table-label">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate">{cart.Product_Name__c}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">
+                        <dl class="slds-show_inline-block ">
+                            <dd class="slds-show_inline-block slds-m-left_small">
+                                <!-- <lightning-button class="slds-truncate" label="+" data-name="Up" variant="brand"
+                                    onclick={counter}>
+                                </lightning-button> -->
+                            </dd>
+                            <dd class="slds-show_inline-block slds-m-left_small">
+                                <label class="slds-truncate">{quantity}</label>
+                            </dd>
+                            <dd class="slds-show_inline-block slds-m-left_small">
+                                <!-- <lightning-button class="slds-truncate" label="-" data-name="Down" variant="brand"
+                                    onclick={counter}>
+                                </lightning-button> -->
+                            </dd>
+                        </dl>
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{cart.Total_Amount__c}</div>
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+</template>
