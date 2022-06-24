@@ -91,7 +91,8 @@
     </template>
     <template if:false={indItem}>
         <lightning-card title="Cart" icon-name="standard:account">
-            <p><b>There Are No Items in your cart!! Please don't do window shopping !! Dubara mat Aaana!!</b></p>
+            <p><b>There Are No Items in your cart!! Please click on the Add Products button below to add items.</b></p>
+            <lightning-button label="Add Products" onclick={goToAllProduct}></lightning-button>
         </lightning-card>
     </template>
 </template>

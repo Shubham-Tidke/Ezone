@@ -8,8 +8,7 @@ public with sharing class CreateUserTriggerHandler {
             dmo.EmailHeader.triggerAutoResponseEmail = false;
             dmo.optAllOrNone = false;
             
-            string nick = con.email!=null?con.email.substring(0, con.email.indexOf('@')):'';
-            nick += Datetime.now().getTime();
+
             User newUser1 = new User(
                 email = con.email, 
                 emailencodingkey = 'UTF-8', 
@@ -23,6 +22,7 @@ public with sharing class CreateUserTriggerHandler {
                 ProfileId =[Select Id from Profile where Name = 'EZone CCU'].Id, 
                 Phone=con.Phone,
                 Title=con.Title,
+                CommunityNickname=(con.lastname).substring(0,3),
                 alias=(con.lastname).substring(0,3),
                 IsActive = true,
                 Street = con.MailingStreet,

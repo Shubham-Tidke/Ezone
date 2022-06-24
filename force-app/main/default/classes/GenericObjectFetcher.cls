@@ -49,6 +49,8 @@ public with sharing class GenericObjectFetcher {
                 addressList = [SELECT Id, City__c, Country__c, Land_Mark__c, Postal_Code__c, State__c, Street__c, Address_Selection__c 
                                             FROM Address_Book__c 
                                             WHERE User__c =: currentUserId AND Address_Selection__c ='Billing Address'];
+            	System.debug('User Id in getBillFetch method is: '+ currentUserId);
+            	System.debug('Billing Address returned by fetcher class is: '+ addressList);
             }
         catch (Exception e) {
             System.debug('Error while getting Address in getAddresses :'+e.getMessage());
@@ -64,7 +66,8 @@ public with sharing class GenericObjectFetcher {
     try {
         ratingList = [SELECT Id FROM Product_Ratings__c WHERE Product__c =:productId];
     } catch (Exception e) {
-        throw new AuraHandledException(e.getMessage());
+        System.debug('Error while getting Address in getAddresses :'+e.getMessage());
+    	
     }
     return ratingList;
    }
@@ -161,7 +164,8 @@ public with sharing class GenericObjectFetcher {
             
         }
         catch (Exception ex) {
-            
+            System.debug('Error while getting Product Category in getCategories :'+ex.getMessage());
+
         }
         return tempProduct;
     }

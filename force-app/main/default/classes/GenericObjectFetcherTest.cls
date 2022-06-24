@@ -7,7 +7,8 @@
 **/
 @isTest
 public with sharing class GenericObjectFetcherTest {
-    
+    public static User u = [SELECT Id, Name FROM User WHERE Id = '0055i000003oIHhAAM'];
+
     @TestSetup
     static void makeData(){
         Product2 product=new Product2(Name='Test Product',Description='Test Product by Mayank',Inventory__c=100,Offer_Available__c=false,Price__c=100,Remaining_Quantity__c=0);
@@ -33,6 +34,22 @@ public with sharing class GenericObjectFetcherTest {
         
         List<Product_Category__c> productCategories=new List<Product_Category__c>();
         productCategories.add(productCategory);
+                
+
+        System.runAs(u){
+            Address_Book__c ab=new Address_Book__c(Name='Home',Street__c='Madhapur',Land_Mark__c='Metro',
+                                                   State__c='TS',City__c='Hyderabad',Country__c='India,IN',Address_Selection__c='Billing Address',
+                                                   Postal_Code__c=500080,User__c=u.Id);
+            insert ab;
+            
+            Address_Book__c ab1 = new Address_Book__c(Name='Home',Street__c='Madhapur',Land_Mark__c='Metro',
+                                                      State__c='TS',City__c='Hyderabad',Country__c='India,IN',Address_Selection__c='Shipping Address',
+                                                      Postal_Code__c=500080,User__c=u.Id);
+             insert ab1;
+         }
+        
+        Product_Ratings__c productRatings=new Product_Ratings__c(Name='Test PR',Product__c=product.id,Rating__c=5);
+        insert productRatings;
     }
 
     @isTest
@@ -81,6 +98,26 @@ public with sharing class GenericObjectFetcherTest {
     }
     
     @isTest
+    private static void testGetBillingAddress(){
+        Test.startTest();
+        System.runAs(u){
+			 List<Address_Book__c> addressList=GenericObjectFetcher.getBillingAddress(u.id);           
+            System.assertEquals(1, addressList.size(), 'Address did not matched');
+        }
+        Test.stopTest();
+    }
+    
+    @isTest
+    private static void testGetShippingAddress(){
+        Test.startTest();
+        System.runAs(u){
+			 List<Address_Book__c> addressList=GenericObjectFetcher.getShippingAddress(u.id);           
+            System.assertEquals(1, addressList.size(), 'Address did not matched');
+        }
+        Test.stopTest();
+    }
+    
+    @isTest
     private static void testGetParentCategories(){
         List<Category__c> productCategories=GenericObjectFetcher.getParentCategories();
         List<Category__c> childCategories=GenericObjectFetcher.getChildCategories(productCategories[0].Id);	
@@ -89,6 +126,15 @@ public with sharing class GenericObjectFetcherTest {
         System.assertEquals(1, productCategories.size(), 'Size Matched');
         System.assertEquals(1, childCategories.size(), 'Size Matched');
         System.assertEquals(1, products.size(),'Size Matched');
+        Test.stopTest();
+    }
+    
+    @isTest
+    private static void testgetProductRatings(){
+        Product2 product=[Select Id, Name from Product2 where Name='Test Product' WITH SECURITY_ENFORCED LIMIT 1];
+        Test.startTest();
+        List<Product_Ratings__c> ratingList=GenericObjectFetcher.getProductRatings(product.Id);
+        System.assertEquals(1, ratingList.size(), 'Size did not matched');
         Test.stopTest();
     }
     
@@ -105,6 +151,12 @@ public with sharing class GenericObjectFetcherTest {
             GenericObjectFetcher.getProductOffers(null);
             System.assert(true,'Above line should give exception');
             GenericObjectFetcher.getProductWithCategory(null);
+            System.assert(true,'Above line should give exception');
+            GenericObjectFetcher.getBillingAddress(null);
+            System.assert(true,'Above line should give exception');
+            GenericObjectFetcher.getShippingAddress(null);
+            System.assert(true,'Above line should give exception');
+            GenericObjectFetcher.getProductRatings(null);
             System.assert(true,'Above line should give exception');
         }catch(Exception e){
         }

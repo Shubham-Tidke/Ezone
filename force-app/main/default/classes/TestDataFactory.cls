@@ -22,7 +22,7 @@ public with sharing class TestDataFactory {
         update childAccount;
     }
 
-    public static List<Contact> createContact(String firstName, String lastName, String accountId, Integer size, Boolean isInsert){
+    public static List<Contact> createContact(String firstName, String lastName, String accountId, String email, Integer size, Boolean isInsert){
         List<Contact> conList = new List<Contact>();
 
         for(Integer i=0; i< size; i++){
@@ -30,6 +30,7 @@ public with sharing class TestDataFactory {
             con.FirstName = firstName;
             con.LastName = lastName;
             con.AccountId = accountId;
+            con.Email = email;
             conList.add(con);
         }
 
@@ -40,15 +41,15 @@ public with sharing class TestDataFactory {
         return conList;
     }
 
-    public static List<Product2> createProduct(String prodName, Integer inventory, Integer remainingQty, Decimal price, Integer size, Boolean isInsert){
+    public static List<Product2> createProduct(String prodName, Integer size, Boolean isInsert){
         List<Product2> prodList = new List<Product2>();
 
         for(Integer i=0; i<size; i++){
             Product2 prod = new Product2();
             prod.Name = prodName;
-            prod.Inventory__c = inventory;
-            prod.Remaining_Quantity__c = remainingQty;
-            prod.Price__c = price;
+            prod.Inventory__c = 100;
+            prod.Remaining_Quantity__c = 100;
+            prod.Price__c = 100;
             prodList.add(prod);
         }
 

@@ -28,7 +28,7 @@ export default class CartInformation extends NavigationMixin(LightningElement) {
     @track isBillingAddress = false;
     @track isShippingAddress = false;
     @track orderId;
-    @track navUrl;
+    navUrl;
 
     connectedCallback(){
         getBillingAddress({currentUserId : this.userId}).then(result => {
@@ -113,8 +113,6 @@ export default class CartInformation extends NavigationMixin(LightningElement) {
     }
     
     goToOrder(){
-        console.log('Checkout Clicked');
-
         if(this.updatedCost == 0){
             this.updatedCost = this.cartAmount;
         }
@@ -161,23 +159,25 @@ export default class CartInformation extends NavigationMixin(LightningElement) {
         }
 
         else{
+            console.log('Cart Line Item is : '+ JSON.stringify(this.indItem));
             createOrderLineItem({cartLineItems : this.indItem, afterDiscount : this.updatedCost}).then(result =>{
                 this.orderId = result;
                 console.log('Result in Line Item is : '+this.orderId);
                 this.navUrl = 'https://eorderzone-developer-edition.ap26.force.com/s/orderdetailpage?Id='+this.orderId;
-                const config = {
-                    type: 'standard__webPage',
-                    attributes: {
-                        url: this.navUrl
-                    }
-                };
-                this[NavigationMixin.Navigate](config);
+                window.location.href = this.navUrl;
+                
             }).catch(error =>{
                 this.error = error;
                 console.log(JSON.stringify(this.error));
             })
-           
-            
+          
+            // const config = {
+            //     type: 'standard__webPage',
+            //     attributes: {
+            //         url: this.navUrl
+            //     }
+            // };
+            // this[NavigationMixin.Navigate](config);
         }
         
     }
@@ -228,5 +228,15 @@ export default class CartInformation extends NavigationMixin(LightningElement) {
     handleChange(event){
         quantity = event.target.value;
         console.log('value in QUANTITY :'+ quantity);
+    }
+
+    goToAllProduct(){
+                const config = {
+                    type: 'standard__webPage',
+                    attributes: {
+                        url: 'https://eorderzone-developer-edition.ap26.force.com/s/all-products'
+                    }
+                };
+                this[NavigationMixin.Navigate](config);
     }
 }

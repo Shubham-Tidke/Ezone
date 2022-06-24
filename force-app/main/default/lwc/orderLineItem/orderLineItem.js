@@ -97,12 +97,12 @@ export default class OrderLineItem extends NavigationMixin(LightningElement){
 
         cancelOrder({orderId: this.recId}).then(result => {
 
-            if(result.Status__c!='In Process' || result.Status__c!='Open'){
+            if(result.Status__c=='Cancelled'){
 
                 console.log(JSON.stringify(result));
             const toastEvent= new ShowToastEvent(
                 {title: "Order Cancelled!!",
-                 message: "Pencil bol pencil , tera order cancel",
+                 message: "Your Order has been succesfully cancelled!",
                  variant: "success"
                 })
             this.dispatchEvent(toastEvent);
@@ -119,8 +119,8 @@ export default class OrderLineItem extends NavigationMixin(LightningElement){
                 
                 const toastEvent= new ShowToastEvent(
                     {title: "Order Not Cancelled!!",
-                     message: "Pencil bol pencil , tera order nahi karunga cancel!!",
-                     variant: "success"
+                     message: "This Order cannot be cancelled. Please contact Customer Support",
+                     variant: "error"
                     })
                 this.dispatchEvent(toastEvent);}
             
