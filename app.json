@@ -1,0 +1,11 @@
+{
+  "name": "Ezone-web-app",
+  "description": "Ezone Web App",
+  "keywords": [
+    "app-cloud"
+  ],
+  "repository": "https://github.com/Shubham-Tidke/eZone",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
